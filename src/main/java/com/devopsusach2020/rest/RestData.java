@@ -20,7 +20,7 @@ import com.google.gson.Gson;
 @RequestMapping(path = "/rest/mscovid")
 public class RestData {
 	
-	private static final Logger LOGGER = Logger.getLogger("devops.subnivel.Control");
+	private static final  Logger LOGGER = Logger.getLogger("devops.subnivel.Control");
 
 	
 	@GetMapping(path = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -46,21 +46,24 @@ public class RestData {
 		int death = 0;
 		int recovered = 0;
 		Gson gson = new Gson();
-        Pais[] estados = gson.fromJson(call.getBody().toLowerCase(), Pais[].class);
-
-        for(Pais estado : estados) {
-        	response.setDate(estado.getDate());
-        	response.setActive(estado.getActive());
-        	confirmed += estado.getConfirmed();
-        	death += estado.getDeaths();
-        	recovered += estado.getRecovered();
-        }
-        
-    	response.setConfirmed(confirmed);
-    	response.setDeaths(death);
-    	response.setRecovered(recovered);
-    	response.setCountry(message);
-    	response.setMensaje("ok");
+		String body = call.getBody();
+		if(body != null) {
+			 Pais[] estados = gson.fromJson(body.toLowerCase(), Pais[].class);
+		        for(Pais estado : estados) {
+		        	response.setDate(estado.getDate());
+		        	response.setActive(estado.getActive());
+		        	confirmed += estado.getConfirmed();
+		        	death += estado.getDeaths();
+		        	recovered += estado.getRecovered();
+		        }
+		        
+		    	response.setConfirmed(confirmed);
+		    	response.setDeaths(death);
+		    	response.setRecovered(recovered);
+		    	response.setCountry(message);
+		    	response.setMensaje("ok");
+		}
+       
 
 		return response;		
 	}
