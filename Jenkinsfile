@@ -9,7 +9,7 @@ pipeline {
             steps {
                checkout(
                         [$class: 'GitSCM',
-                        branches: [[name: "pipeline-as-code" ]],
+                        branches: [[name: "test-sonar-jenkisfile" ]],
                         userRemoteConfigs: [[url: 'https://github.com/jesusdonoso/ejemplo-maven.git']]])
             }
         }
