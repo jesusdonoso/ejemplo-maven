@@ -13,15 +13,7 @@ pipeline {
                         userRemoteConfigs: [[url: 'https://github.com/jesusdonoso/ejemplo-maven.git']]])
             }
         }
-        stage("SonarQube analysis") {
-            steps {
-            withSonarQubeEnv(credentialsId: 'ad0a3e01df936235628b32fc893d58dd4f7b89b9', installationName: 'sonarqube')
-            withMaven(maven:'Maven 3.5') {
-                        sh 'mvn clean package sonar:sonar'
-                }
-            }
-        }
-        stage("Paso 3: Compliar"){
+        stage("Paso 2: Compliar"){
             steps {
                 script {
                 sh "echo 'Compile Code!'"
@@ -30,7 +22,7 @@ pipeline {
                 }
             }
         }
-        stage("Paso 4: Testear"){
+        stage("Paso 3: Testear"){
             steps {
                 script {
                 sh "echo 'Test Code!'"
@@ -39,13 +31,18 @@ pipeline {
                 }
             }
         }
-        stage("Paso 5: Build .Jar"){
+        stage("Paso 4: Build .Jar"){
             steps {
                 script {
                 sh "echo 'Build .Jar!'"
                 // Run Maven on a Unix agent.
                 sh "mvn clean package -e"
                 }
+            }
+        }
+        stage("SonarQube analysis") {
+            steps {
+            withSonarQubeEnv(credentialsId: 'ad0a3e01df936235628b32fc893d58dd4f7b89b9', installationName: 'sonarqube')
             }
         }
     }
