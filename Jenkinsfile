@@ -46,7 +46,7 @@ pipeline {
       sh "mvn clean verify sonar:sonar \
       -Dsonar.projectKey=maven-sonar \
       -Dsonar.host.url=http://sonarqube:9000 \
-      -Dsonar.login=ad0a3e01df936235628b32fc893d58dd4f7b89b9"
+      -Dsonar.login=08753769628a45330a84d73d225199c162f68d02"
     }
             withSonarQubeEnv('sonarqube') { // This expands the evironment variables SONAR_CONFIG_NAME, SONAR_HOST_URL, SONAR_AUTH_TOKEN that can be used by any script.
         println "${env.SONAR_HOST_URL}"
