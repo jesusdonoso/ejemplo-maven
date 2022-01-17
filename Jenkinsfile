@@ -13,7 +13,17 @@ pipeline {
                         userRemoteConfigs: [[url: 'https://github.com/jesusdonoso/ejemplo-maven.git']]])
             }
         }
-        stage("Paso 2: Compliar"){
+        node {
+        stage('SCM') {
+            git 'https://github.com/foo/bar.git'
+         }
+        stage('SonarQube analysis') {
+            withSonarQubeEnv(credentialsId: 'f225455e-ea59-40fa-8af7-08176e86507a', installationName: 'sonarqube') { // You can override the credential to be used
+            sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+                }
+             }
+        }
+        stage("Paso 3: Compliar"){
             steps {
                 script {
                 sh "echo 'Compile Code!'"
@@ -22,7 +32,7 @@ pipeline {
                 }
             }
         }
-        stage("Paso 3: Testear"){
+        stage("Paso 4: Testear"){
             steps {
                 script {
                 sh "echo 'Test Code!'"
@@ -31,7 +41,7 @@ pipeline {
                 }
             }
         }
-        stage("Paso 4: Build .Jar"){
+        stage("Paso : Build .Jar"){
             steps {
                 script {
                 sh "echo 'Build .Jar!'"
