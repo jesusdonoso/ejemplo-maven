@@ -13,6 +13,10 @@ class DevOpsUsach2020ApplicationTests {
 		Assert.assertNull(null);
 	}
 
+	@Test
+	void contextLoads1() {
+		Assert.assertNull(null);
+	}
 }
 
 
