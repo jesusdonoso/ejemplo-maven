@@ -40,7 +40,7 @@ pipeline {
                 }
             }
         }
-        stage("SonarQube analysis") {
+        stage("sonar") {
             steps {
             withSonarQubeEnv('sonarqube') { // You can override the credential to be used
       sh "mvn clean verify sonar:sonar \
