@@ -45,7 +45,7 @@ pipeline {
             withSonarQubeEnv('sonarqube') { // You can override the credential to be used
       sh "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar"
     }
-            withSonarQubeEnv('sonarqube', envOnly: true) { // This expands the evironment variables SONAR_CONFIG_NAME, SONAR_HOST_URL, SONAR_AUTH_TOKEN that can be used by any script.
+            withSonarQubeEnv('sonarqube') { // This expands the evironment variables SONAR_CONFIG_NAME, SONAR_HOST_URL, SONAR_AUTH_TOKEN that can be used by any script.
         println ${env.SONAR_HOST_URL}
     }
             }
