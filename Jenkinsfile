@@ -13,7 +13,7 @@ pipeline {
                         userRemoteConfigs: [[url: 'https://github.com/jesusdonoso/ejemplo-maven.git']]])
             }
         }
-        stage("Paso 2: Compliar"){
+        stage("Paso 2: Compilar"){
             steps {
                 script {
                 sh "echo 'Compile Code!'"
@@ -44,7 +44,7 @@ pipeline {
             steps {
             withSonarQubeEnv('sonarqube') { // You can override the credential to be used
       sh "mvn clean verify sonar:sonar \
-      -Dsonar.projectKey=ejemplo-maven \
+      -Dsonar.projectKey=maven-sonar \
       -Dsonar.host.url=http://sonarqube:9000 \
       -Dsonar.login=ad0a3e01df936235628b32fc893d58dd4f7b89b9"
     }
