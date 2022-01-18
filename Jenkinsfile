@@ -43,7 +43,7 @@ pipeline {
         stage("sonar") {
             steps {
             withSonarQubeEnv('sonarqube') { // You can override the credential to be used
-      sh "/var/jenkins_home/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarqube/bin/sonar-scanner /
+      sh "/var/jenkins_home/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarqube/bin/sonar-scanner \
       -Dsonar.projectKey=ejemplo-sonar-maven"
     }
             }
