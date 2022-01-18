@@ -43,10 +43,8 @@ pipeline {
         stage("sonar") {
             steps {
             withSonarQubeEnv('sonarqube') { // You can override the credential to be used
-      sh "mvn clean verify sonar:sonar \
-      -Dsonar.projectKey=maven-sonar \
-      -Dsonar.host.url=http://sonarqube:9000 \
-      -Dsonar.login=08753769628a45330a84d73d225199c162f68d02"
+      sh "/var/jenkins_home/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarqube/bin/sonar-scanner -Dsonar.projectKey=maven-sonar"
+                }
     }
             withSonarQubeEnv('sonarqube') { // This expands the evironment variables SONAR_CONFIG_NAME, SONAR_HOST_URL, SONAR_AUTH_TOKEN that can be used by any script.
         println "${env.SONAR_HOST_URL}"
