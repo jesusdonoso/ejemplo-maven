@@ -44,7 +44,7 @@ pipeline {
             steps {
             withSonarQubeEnv('sonarqube') { // You can override the credential to be used
       sh "mvn clean verify sonar:sonar \
-      -Dsonar.projectKey=ejemplo-sonar-maven"
+      -Dsonar.projectKey=new-feature-sonarqube"
     }
             withSonarQubeEnv('sonarqube') { // This expands the evironment variables SONAR_CONFIG_NAME, SONAR_HOST_URL, SONAR_AUTH_TOKEN that can be used by any script.
         println "${env.SONAR_HOST_URL}"
