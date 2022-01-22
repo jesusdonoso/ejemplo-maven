@@ -97,4 +97,3 @@ pipeline {
             sh "echo 'fase failure'"
         }
     }
-}
