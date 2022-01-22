@@ -57,7 +57,7 @@ pipeline {
                                 mavenAssetList: [
                                     [classifier: '',
                                     extension: '.jar',
-                                    filePath: '/var/jenkins_home/workspace/feature-sonar/build/DevOpsUsach2020-0.0.7.jar']
+                                    filePath: '/var/jenkins_home/workspace/feature-sonar/build/DevOpsUsach2020-0.0.1.jar']
                                 ],
                         mavenCoordinate: [
                             artifactId: 'DevOpsUsach2020',
