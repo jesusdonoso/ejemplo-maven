@@ -57,7 +57,7 @@ pipeline {
                                 mavenAssetList: [
                                     [classifier: '',
                                     extension: '.jar',
-                                    filePath: 'build/DevOpsUsach2020-0.0.7.jar']
+                                    filePath: '/var/jenkins_home/workspace/feature-sonar/build/DevOpsUsach2020-0.0.7.jar']
                                 ],
                         mavenCoordinate: [
                             artifactId: 'DevOpsUsach2020',
@@ -90,7 +90,7 @@ pipeline {
             sh "echo 'fase always executed post'"
         }
         success {
-            sh "echo 'fase success'"
+            sh "echo 'fase success 1'"
         }
         failure {
             sh "echo 'fase failure'"
