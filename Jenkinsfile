@@ -46,6 +46,28 @@ pipeline {
                     sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=new-feature-sonarqube'
                 }
             }
+            post {
+                //record the test results and archive the jar file.
+                success {
+                    //archiveArtifacts artifacts:'build/*.jar'
+                    nexusPublisher nexusInstanceId: 'nexus',
+                        nexusRepositoryId: 'devops-usach-nexus',
+                        packages: [
+                            [$class: 'MavenPackage',
+                                mavenAssetList: [
+                                    [classifier: '',
+                                    extension: '.jar',
+                                    filePath: 'build/DevOpsUsach2020-0.0.7.jar']
+                                ],
+                        mavenCoordinate: [
+                            artifactId: 'DevOpsUsach2020',
+                            groupId: 'com.devopsusach2020',
+                            packaging: 'jar',
+                            version: '0.0.7']
+                        ]
+                    ]
+                }
+            }
         }
         stage("Paso 5: Levantar Springboot APP"){
             steps {
@@ -68,24 +90,6 @@ pipeline {
             sh "echo 'fase always executed post'"
         }
         success {
-            sh "echo 'fase success'"
-            //archiveArtifacts artifacts:'build/*.jar'
-                    nexusPublisher nexusInstanceId: 'nexus',
-                        nexusRepositoryId: 'devops-usach-nexus',
-                        packages: [
-                            [$class: 'MavenPackage',
-                                mavenAssetList: [
-                                    [classifier: '',
-                                    extension: '.jar',
-                                    filePath: 'build/DevOpsUsach2020-0.0.7.jar']
-                                ],
-                        mavenCoordinate: [
-                            artifactId: 'DevOpsUsach2020',
-                            groupId: 'com.devopsusach2020',
-                            packaging: 'jar',
-                            version: '0.0.7']
-                        ]
-                    ]
         }
         failure {
             sh "echo 'fase failure'"
