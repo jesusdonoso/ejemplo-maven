@@ -71,13 +71,13 @@ pipeline {
                                 mavenAssetList: [
                                     [classifier: '',
                                     extension: '.jar',
-                                    filePath: '/var/jenkins_home/workspace/feature-sonar/build/DevOpsUsach2020-0.0.1.jar']
+                                    filePath: '/var/jenkins_home/workspace/feature-nexus/build/DevOpsUsach2020-0.0.1.jar']
                                 ],
                         mavenCoordinate: [
                             artifactId: 'DevOpsUsach2020',
                             groupId: 'com.devopsusach2020',
                             packaging: 'jar',
-                            version: '0.0.4']
+                            version: '0.0.1']
                         ]
                     ]
                 }
@@ -100,13 +100,13 @@ pipeline {
         }
          stage("Paso 7: Download: Nexus"){
             steps {
-                //http://nexus3:10003/repository/devops-usach-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.2/DevOpsUsach2020-0.0.2.jar
-                sh ' curl -X GET -u $NEXUS_USER:$NEXUS_PASSWORD "http://nexus:8081/repository/devops-usach-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.4/DevOpsUsach2020-0.0.4..jar" -O'
+                //http://nexus:10003/repository/devops-usach-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.2/DevOpsUsach2020-0.0.2.jar
+                sh ' curl -X GET -u $NEXUS_USER:$NEXUS_PASSWORD "http://nexus:8081/repository/devops-usach-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1..jar" -O'
             }
         }
         stage("Paso 8: Levantar Springboot APP"){
             steps {
-                sh 'nohup bash java -jar DevOpsUsach2020-0.0.4.jar & >/dev/null'
+                sh 'nohup bash java -jar DevOpsUsach2020-0.0.1.jar & >/dev/null'
             }
         }
         stage("Paso 9: Dormir(Esperar 100sg) "){
@@ -124,7 +124,7 @@ pipeline {
                             mavenAssetList: [
                                 [classifier: '',
                                 extension: '.jar',
-                                filePath: 'DevOpsUsach2020-0.0.4.jar']
+                                filePath: '/var/jenkins_home/workspace/feature-nexus/build/DevOpsUsach2020-0.0.1.jar']
                             ],
                     mavenCoordinate: [
                         artifactId: 'DevOpsUsach2020',
