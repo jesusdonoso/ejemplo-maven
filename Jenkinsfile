@@ -109,9 +109,9 @@ pipeline {
                 sh 'nohup bash java -jar DevOpsUsach2020-0.0.4.jar & >/dev/null'
             }
         }
-        stage("Paso 9: Dormir(Esperar 20sg) "){
+        stage("Paso 9: Dormir(Esperar 100sg) "){
             steps {
-               sh "sleep 20 && curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
+               sh "sleep 100 && curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
             }
         }
         stage("Paso 10: Subir nueva Version"){
