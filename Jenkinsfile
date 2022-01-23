@@ -5,6 +5,16 @@ def jsonParse(def json) {
 pipeline {
     agent any
     stages {
+        stage("Paso 0: Download and checkout"){
+            steps {
+                checkout(
+                    [$class: 'GitSCM',
+                    //Acá reemplazar por el nonbre de branch
+                    branches: [[name: "nexus" ]],
+                    //Acá reemplazar por su propio repositorio
+                    userRemoteConfigs: [[url: 'https://github.com/jesusdonoso/ejemplo-maven.git']]])
+            }
+        }
         stage("Paso 1: Compliar"){
             steps {
                 script {
